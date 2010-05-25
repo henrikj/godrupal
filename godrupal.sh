@@ -5,7 +5,7 @@ newname=$1
 
 #Settings
 ##############################################
-
+webuser="www-data"					#Web-server user
 webroot="/var/www/"					#ex. "/var/www/"
 hostsfile="/etc/hosts"				#ex. "/etc/hosts"
 apachesites="/etc/apache2/sites-available/"  #ex. "/etc/apache2/sites-available/
@@ -53,9 +53,9 @@ if [ -z "$newname" ]; then
     #Make the necessary modifications in drupal for the installation.
     cd "sites/default"
     cp default.settings.php settings.php
-    sudo chown www-data settings.php
+    sudo chown $webuser settings.php
     mkdir files 
-    sudo chown www-data files
+    sudo chown $webuser files
 
     #Also create the database.
     mysqladmin -h localhost -u root -p create $newname
